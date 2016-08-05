@@ -1,0 +1,5 @@
+.bzrignore
+.hgignore
+install
+*~
+*.sublime-workspace
