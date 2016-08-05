@@ -1,1 +1,5 @@
-src/platypus.vala
+src/ForegroundProcessDialog.vala
+src/Platypus.vala
+src/PlatypusWindow.vala
+src/SearchToolbar.vala
+src/TerminalWidget.vala

@@ -5,5 +5,15 @@
 			"path": ".",
 			"folder_exclude_patterns": ["install"]
 		}
-	]
+	],
+	"build_systems":
+    [
+        {
+            "name": "Autovala",
+            "shell_cmd": "autovala update; cd install; cmake ..; make",
+            "file_regex": "^(..[^:\n]*):([0-9]+)\\.([0-9]+)-[0-9]+\\.[0-9]+: (.*)$",
+            "line_regex": "^\\s",
+        	"working_dir": "${folder:${project_path:${file_path}}}"
+        }
+    ]
 }

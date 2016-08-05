@@ -3,14 +3,30 @@ autovala_version: 20
 project_name: platypus
 *vala_version: 0.32
 
+define: DEBUG
 
-*vala_binary: src/platypus
+
+vala_binary: src/platypus
+compile_options: -g
+vala_check_package: gio-2.0
+vala_check_package: gtk+-3.0
+vala_check_package: posix
+vala_check_package: vte-2.91
 *vala_check_package: glib-2.0
-*vala_source: platypus.vala
+*vala_check_package: gobject-2.0
+*vala_source: ForegroundProcessDialog.vala
+*vala_source: Platypus.vala
+*vala_source: PlatypusWindow.vala
+*vala_source: SearchToolbar.vala
+*vala_source: TerminalWidget.vala
 
 *po: po
 
-*translate: vala src/platypus.vala
+*translate: vala src/ForegroundProcessDialog.vala
+*translate: vala src/Platypus.vala
+*translate: vala src/PlatypusWindow.vala
+*translate: vala src/SearchToolbar.vala
+*translate: vala src/TerminalWidget.vala
 
 *data: data/local
 

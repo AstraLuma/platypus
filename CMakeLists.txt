@@ -8,6 +8,7 @@ list (APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 enable_testing ()
 option(ICON_UPDATE "Update the icon cache after installing" ON)
 option(BUILD_VALADOC "Build API documentation if Valadoc is available" OFF)
+option(DEBUG "DEBUG" OFF)
 
 include(GNUInstallDirs)
 if( ( ${CMAKE_INSTALL_PREFIX} MATCHES "^/usr/local" ) )
@@ -28,7 +29,12 @@ endif()
 
 find_package(PkgConfig)
 
+set(MODULES_TO_CHECK ${MODULES_TO_CHECK} gio-2.0)
+set(MODULES_TO_CHECK ${MODULES_TO_CHECK} gtk+-3.0)
+set(MODULES_TO_CHECK ${MODULES_TO_CHECK} posix)
+set(MODULES_TO_CHECK ${MODULES_TO_CHECK} vte-2.91)
 set(MODULES_TO_CHECK ${MODULES_TO_CHECK} glib-2.0)
+set(MODULES_TO_CHECK ${MODULES_TO_CHECK} gobject-2.0)
 
 pkg_check_modules(DEPS REQUIRED ${MODULES_TO_CHECK})
 

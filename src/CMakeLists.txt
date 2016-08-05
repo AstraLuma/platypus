@@ -22,15 +22,33 @@ include (ValaVersion)
 ensure_vala_version ("0.32" MINIMUM)
 include (ValaPrecompile)
 
+set (VALA_PACKAGES ${VALA_PACKAGES} gio-2.0)
+set (VALA_PACKAGES ${VALA_PACKAGES} gtk+-3.0)
+set (VALA_PACKAGES ${VALA_PACKAGES} posix)
+set (VALA_PACKAGES ${VALA_PACKAGES} vte-2.91)
 set (VALA_PACKAGES ${VALA_PACKAGES} glib-2.0)
+set (VALA_PACKAGES ${VALA_PACKAGES} gobject-2.0)
 
 set (APP_SOURCES ${APP_SOURCES} ${CMAKE_CURRENT_BINARY_DIR}/Config.vala)
-set (APP_SOURCES ${APP_SOURCES} platypus.vala)
+set (APP_SOURCES ${APP_SOURCES} ForegroundProcessDialog.vala)
+set (APP_SOURCES ${APP_SOURCES} Platypus.vala)
+set (APP_SOURCES ${APP_SOURCES} PlatypusWindow.vala)
+set (APP_SOURCES ${APP_SOURCES} SearchToolbar.vala)
+set (APP_SOURCES ${APP_SOURCES} TerminalWidget.vala)
+
+if (DEBUG)
+	set (COMPILE_OPTIONS ${COMPILE_OPTIONS} -D DEBUG)
+	set (CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -DDEBUG " )
+	set (CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DDEBUG " )
+endif ()
+set (COMPILE_OPTIONS ${COMPILE_OPTIONS} -g )
 
 vala_precompile(VALA_C platypus
 	${APP_SOURCES}
 PACKAGES
 	${VALA_PACKAGES}
+OPTIONS
+	${COMPILE_OPTIONS}
 )
 
 add_executable(platypus ${VALA_C})
